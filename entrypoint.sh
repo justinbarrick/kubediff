@@ -1,6 +1,6 @@
 #!/bin/ash
 
 mkdir ~/.kube/
-echo "$KUBECONFIG" |base64 -d > ~/.kube/config
+echo "$KUBE_CONFIG" |base64 -d > ~/.kube/config
 
 kubediff "$@"
