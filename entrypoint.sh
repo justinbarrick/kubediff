@@ -3,4 +3,4 @@
 mkdir ~/.kube/
 echo "$KUBE_CONFIG" |base64 -d > ~/.kube/config
 
-kubediff "$@"
+kubediff --no-error-on-diff "$@"
