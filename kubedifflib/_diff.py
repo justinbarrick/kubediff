@@ -87,14 +87,16 @@ def diff_not_equal(path, want, have):
 
 
 def diff_lists(path, want, have):
-  if not len(want) == len(have):
+  if len(want) != len(have):
     yield different_lengths(path, want, have)
+    return
 
   def eq(x, y):
     return len(list(diff('', x, y))) == 0
 
   for i in list_subtract(want, have, eq):
-    yield missing_item(path, "element [%d]" % i)
+    for difference in diff("%s[%d]" % (path, i), want[i], have[i]):
+      yield difference
 
 
 def list_subtract(xs, ys, equality=operator.eq):
