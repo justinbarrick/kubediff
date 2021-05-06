@@ -10,8 +10,9 @@ COPY . /tmp/kubediff/
 RUN pip3 install /tmp/kubediff/
 RUN pip3 install -r /tmp/kubediff/requirements.txt
 
-COPY kubediff compare-images /
-ENTRYPOINT ["ash", "-c"]
+COPY entrypoint.sh kubediff compare-images /
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 ARG revision
 LABEL maintainer="Weaveworks <help@weave.works>" \
